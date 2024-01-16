@@ -36,9 +36,9 @@ export type ContactCompany = {
   export type ContactDisplayDataType = {
     id : number;
     name : string
-    email : string
+    email ?: string
     phone :string
-    website : string
+    website ?: string
 
   }
 
