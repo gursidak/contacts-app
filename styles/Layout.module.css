@@ -1,0 +1,11 @@
+/* Layout.module.css */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Set the layout's height to 100% of the viewport height */
+  }
+  
+  .content {
+    flex: 1; /* Make the content take up the remaining vertical space */
+    overflow-y: auto; /* Enable vertical scrolling for the content if it overflows */
+  }
