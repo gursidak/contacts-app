@@ -1,7 +1,7 @@
 // components/SearchBar.tsx
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Input, IconButton } from "@mui/material";
+import { Input, IconButton, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import useShallowRouter from "@/hooks/useShallowRouter";
 import useDebounce from "@/hooks/useDebounce";
@@ -20,16 +20,17 @@ const SearchBar: React.FC = () => {
   });
 
   return (
-    <div>
+    <Box display={'flex'}>
       <Input
         type="text"
         onChange={(e) => debouncedOnSearchQueryChange(e.target.value)}
         placeholder="Search..."
+        fullWidth={true}
       />
       <IconButton onClick={handleSearch}>
         <SearchIcon />
       </IconButton>
-    </div>
+    </Box>
   );
 };
 

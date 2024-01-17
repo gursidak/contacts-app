@@ -9,7 +9,7 @@ const contactService = {
         return res.data
     },
 
-    async getContactById(id:number):Promise<Contact>{
+    async getContactById(id:number):Promise<Contact[]>{
         const res  =await axios.get(`${BASE_URL}/users/?id=${id}`);
         return res.data;
     }
