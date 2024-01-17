@@ -28,7 +28,10 @@ const Main = (props: Props) => {
       const normalizedSearch = searchQuery.toLowerCase();
       filteredContacts = filteredContacts.filter(
         (contact) =>
-          contact.name.toLowerCase().includes(normalizedSearch) ||
+          contact.firstName.toLowerCase().includes(normalizedSearch) ||
+          (contact.lastName != null
+            ? contact.lastName.toLowerCase().includes(normalizedSearch)
+            : false) ||
           contact.phone.toLowerCase().includes(normalizedSearch) ||
           (contact.email &&
             contact.email.toLowerCase().includes(normalizedSearch))

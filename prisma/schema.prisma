@@ -30,10 +30,10 @@ model contact {
 
 model address {
   id         String   @id @default(cuid())
-  street     String
-  suite      String
-  city       String
-  zipcode    String
+  street     String?
+  suite      String?
+  city       String?
+  zipcode    String?
   createdAt  DateTime @default(now())
   updateDate DateTime @updatedAt
 

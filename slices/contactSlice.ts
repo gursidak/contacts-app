@@ -1,4 +1,4 @@
-import { Contact, ContactState } from "@/types/contact.type";
+import { Contact, ContactState, PostContact } from "@/types/contact.type";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import contactService from "@/services/contact.service";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -97,7 +97,7 @@ export const addNewContact = createAsyncThunk(
     body,
     callback,
   }: {
-    body: Omit<Contact, "id">;
+    body: PostContact;
     callback: () => void;
   }) => {
     try {

@@ -16,6 +16,19 @@ export type Contact = {
   companyId: string | null;
 };
 
+export type PostContact = {
+  firstName: string;
+  lastName: string ;
+  gender: string ;
+  email: string;
+  address: Omit<ContactAddress, 'id' | 'createdAt'| 'updatedAt'>;
+  nationality: string ;
+  phone: string;
+  website: string;
+  company: Omit<ContactCompany, 'id'>;
+
+}
+
 export type ContactAddress = {
   id: string;
   street: string;
@@ -36,9 +49,9 @@ export type ContactCompany = {
 export type ContactDisplayDataType = {
   id: string;
   name: string;
-  email?: string;
+  email: string|null;
   phone: string;
-  website?: string;
+  website: string|null;
 };
 
 /* State Related types; */

@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { TextField, Button, Grid, Typography } from "@mui/material";
-import { Contact } from "@/types/contact.type";
+import { PostContact } from "@/types/contact.type";
 import {
   ContactsOutlined,
   MapOutlined,
@@ -12,7 +12,7 @@ import {
 const validationSchema = yup.object({
   firstName: yup.string().required("Name is required"),
   lastName: yup.string(),
-  username: yup.string(),
+  nationality: yup.string(),
   email: yup.string().email("Invalid email address"),
   address: yup.object().shape({
     street: yup.string(),
@@ -20,6 +20,7 @@ const validationSchema = yup.object({
     city: yup.string(),
     zipcode: yup.string(),
   }),
+  gender: yup.mixed().oneOf(['MALE', 'FEMALE', 'OTHER']),
   phone: yup.string().required("Phone number is required"),
   website: yup.string(),
   company: yup.object().shape({
@@ -30,7 +31,7 @@ const validationSchema = yup.object({
 });
 
 interface ContactFormProps {
-  onSubmit: (values: Omit<Contact, "id">) => void;
+  onSubmit: (values: PostContact) => void;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
@@ -38,8 +39,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     initialValues: {
       firstName: "",
       lastName: "",
-      username: "",
+      nationality: "",
       email: "",
+      gender : "",
       address: {
         street: "",
         suite: "",
@@ -56,7 +58,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit }) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      onSubmit({ ...values, name: `${values.firstName} ${values.lastName}` });
+      onSubmit({ ...values });
     },
   });
 

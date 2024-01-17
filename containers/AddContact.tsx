@@ -3,7 +3,7 @@ import ContactForm from "./ContactForm";
 import Layout from "./Layout";
 import { Container, Typography } from "@mui/material";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
-import { Contact } from "@/types/contact.type";
+import { Contact, PostContact } from "@/types/contact.type";
 import useAppDispatch from "@/hooks/useAppDispatch";
 import { addNewContact } from "@/slices/contactSlice";
 import { useRouter } from "next/router";
@@ -13,8 +13,8 @@ const AddContact = () => {
   const router = useRouter();
 
   
-  const handleSubmitContactForm = (values: Omit<Contact, "id">) => {
-
+  const handleSubmitContactForm = (values: PostContact) => {
+    console.log({values})
     const handleSubmitCallback = () => {
       router.push('/')
     }

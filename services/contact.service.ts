@@ -1,7 +1,7 @@
-import { Contact } from "@/types/contact.type";
+import { Contact, PostContact } from "@/types/contact.type";
 import axios from "axios";
 
-const BASE_URL = process.env.NODE_ENV === 'development' ?  'http://localhost:3000/api' : 'https://https://keepcontacts.vercel.app/api';
+const BASE_URL = process.env.NODE_ENV === 'development' ?  'http://localhost:3000/api' : 'https://https://keepcontacts-git-add-prisma-gursidak.vercel.app/api';
 
 const contactService = {
   async getList(): Promise<Contact[]> {
@@ -17,7 +17,7 @@ const contactService = {
     return res.data;
   },
 
-  async addContact(body: Omit<Contact, "id">) {
+  async addContact(body: PostContact) {
     const res = await axios.post(`${BASE_URL}/contact`, body );
 
     return res.data;

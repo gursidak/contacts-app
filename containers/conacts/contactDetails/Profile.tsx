@@ -61,7 +61,7 @@ const Profile: React.FC<ProfileProps> = ({ contact }) => {
           </Box>
         }
         subheader={`Contact Id: ${contact.id}`}
-        avatar={<BackgroundLetterAvatar name={contact.firstName} />}
+        avatar={<BackgroundLetterAvatar name={`${contact.firstName} ${contact.lastName}`} />}
       />
       <Divider />
       <CardContent>
