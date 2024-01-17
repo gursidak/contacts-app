@@ -2,6 +2,18 @@ import { sleep } from "@/utils/general.util";
 
 const fs = require("fs");
 
+if(process.env.NODE_ENV === 'production'){
+
+  const writeFilePath ="/tmp/contacts.json";
+  const contactsFromDataFile = require("../data/contacts.json"); 
+  try {
+    fs.writeFileSync(writeFilePath, JSON.stringify(contactsFromDataFile, null, 4));
+  } catch (error) {
+    console.log("CATCH IN COPYING - ", error);
+  }
+}
+
+
 // users in JSON file for simplicity, store in a db for production applications
 let contacts = require(process.env.NODE_ENV == "development"
   ? "../data/contacts.json"
