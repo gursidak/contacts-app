@@ -2,54 +2,48 @@
 
 /* General Types; */
 export type Contact = {
-  id: number;
-  name: string;
-  username?: string;
-  email?: string;
-  address?: ContactAddress
+  id: string;
+  firstName: string;
+  lastName: string | null;
+  gender: string | null;
+  email: string | null;
+  address: ContactAddress;
+  nationality: string | null;
   phone: string;
-  website?: string;
-  company?: ContactCompany;
+  website: string | null;
+  company: ContactCompany;
+  addressId: string | null;
+  companyId: string | null;
 };
 
-
 export type ContactAddress = {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode:string ;
-    geo?:ContactGeoPoint
-}
-
-export type ContactGeoPoint = {
-    lat : string
-    lng : string
-}
+  id: string;
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
 
 export type ContactCompany = {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  }
+  id: string;
+  name: string;
+  catchPhrase: string;
+  bs: string;
+};
 
-
-  export type ContactDisplayDataType = {
-    id : number;
-    name : string
-    email ?: string
-    phone :string
-    website ?: string
-
-  }
-
-
+export type ContactDisplayDataType = {
+  id: string;
+  name: string;
+  email?: string;
+  phone: string;
+  website?: string;
+};
 
 /* State Related types; */
 
-
 export type ContactState = {
-    loading : boolean
-    contacts : Contact[];
-}
-
-
+  loading: boolean;
+  contacts: Contact[];
+};

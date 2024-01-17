@@ -36,7 +36,7 @@ const Profile: React.FC<ProfileProps> = ({ contact }) => {
     margin: "auto",
   };
 
-  const handleDeleteContact = (id: number) => {
+  const handleDeleteContact = (id: string) => {
     dispatch(removeContact(id));
     router.push(`/`);
   };
@@ -46,7 +46,7 @@ const Profile: React.FC<ProfileProps> = ({ contact }) => {
       <CardHeader
         title={
           <Box display={"flex"} justifyContent={"space-between"}>
-            <Typography fontSize={"large"}>{contact.name}</Typography>
+            <Typography fontSize={"large"}>{`${contact.firstName} ${contact.lastName}`}</Typography>
             <Box display={"flex"}>
               <IconButton color={"info"}>
                 <EditOutlined />
@@ -61,7 +61,7 @@ const Profile: React.FC<ProfileProps> = ({ contact }) => {
           </Box>
         }
         subheader={`Contact Id: ${contact.id}`}
-        avatar={<BackgroundLetterAvatar name={contact.name} />}
+        avatar={<BackgroundLetterAvatar name={contact.firstName} />}
       />
       <Divider />
       <CardContent>
@@ -155,7 +155,7 @@ export default Profile;
 
 export type ProfileItemProps = {
   label: string;
-  value?: string;
+  value: string| null;
 };
 
 const ProfileItem = ({ label, value }: ProfileItemProps) => {

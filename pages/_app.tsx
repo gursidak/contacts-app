@@ -10,7 +10,8 @@ import { fetchContacts } from "@/slices/contactSlice";
 
 export default function App(props: AppProps) {
   useEffect(() => {
-    if (store.getState().contact.contacts.length === 0) {
+    if (true) {
+      console.log("STATE")
       store.dispatch(fetchContacts());
     }
   }, []);

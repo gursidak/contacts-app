@@ -5,8 +5,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 import { handleAPIErrors } from "@/utils/handleError.util";
 import { toast } from "react-toastify";
-import { contactRepo } from "@/helpers/contact-repo";
-import contactHandler from "@/pages/api/contact";
 
 const initialState: ContactState = {
   loading: false,
@@ -32,7 +30,7 @@ const contactSlice = createSlice({
         state.contacts[index] = updatedContact;
       }
     },
-    removeContact: (state, { payload }: PayloadAction<number>) => {
+    removeContact: (state, { payload }: PayloadAction<string>) => {
       const contactIdToRemove = payload;
       state.contacts = state.contacts.filter(
         (contact) => contact.id !== contactIdToRemove
@@ -88,7 +86,7 @@ export const fetchContacts = createAsyncThunk(
       return data;
     } catch (error) {
       handleAPIErrors(error);
-      throw error;
+      // throw error;
     }
   }
 );

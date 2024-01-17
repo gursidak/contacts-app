@@ -58,7 +58,7 @@ const ContactsTable: React.FC<Props> = ({data:contacts, loading}) => {
     () =>
       contacts.map((contact: Contact) => ({
         id : contact.id,
-        name: contact.name,
+        name: `${contact.firstName} ${contact.lastName}`,
         phone: contact.phone,
         email: contact.email,
         website : contact.website
