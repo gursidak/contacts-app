@@ -1,7 +1,7 @@
 import { Contact } from "@/types/contact.type";
 import axios from "axios";
 
-const BASE_URL = "/api";
+const BASE_URL = process.env.NODE_ENV === 'development' ?  'http://localhost:3000/api' : 'https://https://keepcontacts.vercel.app/api';
 
 const contactService = {
   async getList(): Promise<Contact[]> {
@@ -10,7 +10,7 @@ const contactService = {
   },
 
   async getContactById(id: string, host?: string): Promise<Contact> {
-    const path = `${host ? `https://keepcontacts.vercel.app` : ""}${BASE_URL}/contact?id=${id}`;
+    const path = `${BASE_URL}/contact?id=${id}`
     console.log({path});
 
     const res = await axios.get(path);
@@ -18,7 +18,7 @@ const contactService = {
   },
 
   async addContact(body: Omit<Contact, "id">) {
-    const res = await axios.post(`/api/contact`, body );
+    const res = await axios.post(`${BASE_URL}/contact`, body );
 
     return res.data;
   },
