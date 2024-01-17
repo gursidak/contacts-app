@@ -19,7 +19,7 @@ export default function App(props: AppProps) {
   return (
     <AppCacheProvider {...props}>
       <Provider store={store}>
-        <ToastContainer
+        {/* <ToastContainer
           position="top-right"
           autoClose={2500}
           hideProgressBar={false}
@@ -29,7 +29,7 @@ export default function App(props: AppProps) {
           pauseOnFocusLoss={false}
           draggable
           pauseOnHover
-        />
+        /> */}
         <Component {...pageProps} />
       </Provider>
     </AppCacheProvider>

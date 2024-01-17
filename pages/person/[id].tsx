@@ -16,29 +16,30 @@ const Person: NextPage<PersonProps> = ({ contact }) => {
   const router = useRouter();
 
   return router.isFallback ? (
-    <Box display={'flex'} flex={1}></Box>
+    <Box display={"flex"} flex={1}></Box>
   ) : (
     <ContactDetails contact={contact} />
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PersonProps> = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps<PersonProps> = async (
+  { params, req },
+) => {
   try {
     const id = params?.id;
-    if (id && typeof id === "string") {
-      const PersonId = Number(id);
-      const contact = await contactService.getContactById(PersonId);
-
+    const host = req.headers?.host;
+    if (id) {
+      const personId = id as string;
+      const contact = await contactService.getContactById(personId, host);
       return {
-        props: { contact: contact[0] },
+        props: { contact },
       };
     }
     return {
       notFound: true, // If the contact with the given ID is not found
     };
   } catch (error: any) {
+    console.error(error);
     handleAPIErrors(error?.message);
     return {
       notFound: true,

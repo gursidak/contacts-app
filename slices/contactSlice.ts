@@ -5,6 +5,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 import { handleAPIErrors } from "@/utils/handleError.util";
 import { toast } from "react-toastify";
+import { contactRepo } from "@/helpers/contact-repo";
+import contactHandler from "@/pages/api/contact";
 
 const initialState: ContactState = {
   loading: false,
@@ -56,6 +58,21 @@ const contactSlice = createSlice({
         state.loading = false;
         /* handle Errors here; */
       });
+
+
+      builder
+      .addCase(addNewContact.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addNewContact.fulfilled, (state, {payload}) => {
+        state.loading = false;
+        state.contacts = [payload, ...state.contacts];
+      })
+      .addCase(addNewContact.rejected, (state, {payload}) => {
+        
+        state.loading = false;
+        /* handle Errors here; */
+      });
   },
 });
 
@@ -77,3 +94,31 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
+
+export const addNewContact = createAsyncThunk(
+  "contacts/addContact",
+  async (body:Omit<Contact, 'id'>) => {
+    try {
+      const data = await contactService.addContact(body);
+      return data;
+    } catch (error) {
+      handleAPIErrors( error);
+      throw error;
+    }
+  }
+);
+
+
+// export const deleteContact =createAsyncThunk(
+//   "contacts/fetchContacts",
+//   async () => {
+//     try {
+//       const data = await contactService.getList();
+//       return data;
+//     } catch (error) {
+//       handleAPIErrors( error);
+//       throw error;
+//     }
+//   }
+// );
+

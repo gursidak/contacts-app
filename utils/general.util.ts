@@ -10,3 +10,8 @@ export const paramsToObject = (params: string) => {
       );
   return{};
   };
+
+
+export  async function sleep(){
+    await new Promise(resolve => setTimeout(resolve, Math.random()*3));
+}

@@ -5,14 +5,14 @@ import { Container, Typography } from "@mui/material";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { Contact } from "@/types/contact.type";
 import useAppDispatch from "@/hooks/useAppDispatch";
-import { addContact } from "@/slices/contactSlice";
+import { addContact, addNewContact } from "@/slices/contactSlice";
 import { useRouter } from "next/router";
 
 const AddContact = () => {
   const dispatch = useAppDispatch()
   const router= useRouter()
   const handleSubmitContactForm =  (values:Omit<Contact, 'id'>) => {
-     dispatch(addContact(values))
+     dispatch(addNewContact(values))
      router.push('/')
   }
   return (
