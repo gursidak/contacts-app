@@ -6,9 +6,8 @@ export default async function contactHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // split out password from user details
 
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     const result = await contactRepo.create(req.body);
    return res.status(200).json(result);
   }

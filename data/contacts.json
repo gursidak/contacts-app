@@ -1,5 +1,28 @@
 [
     {
+        "firstName": "sidk",
+        "lastName": "",
+        "username": "",
+        "email": "",
+        "address": {
+            "street": "",
+            "suite": "",
+            "city": "",
+            "zipcode": ""
+        },
+        "phone": "+9179798484",
+        "website": "gursidak.vercel.app",
+        "company": {
+            "name": "",
+            "catchPhrase": "",
+            "bs": ""
+        },
+        "name": "sidk ",
+        "id": 15,
+        "dateCreated": "2024-01-17T10:56:57.249Z",
+        "dateUpdated": "2024-01-17T10:56:57.249Z"
+    },
+    {
         "firstName": "Shivam",
         "lastName": "",
         "username": "",

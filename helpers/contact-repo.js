@@ -3,7 +3,11 @@ import { sleep } from "@/utils/general.util";
 const fs = require("fs");
 
 // users in JSON file for simplicity, store in a db for production applications
-let contacts = require("../data/contacts.json");
+let contacts = require(process.env.NODE_ENV == "development"
+  ? "../data/contacts.json"
+  : "/tmp/contacts.json");
+
+console.log({ contacts });
 // import contacts from '../data/contacts.json'
 export const contactRepo = {
   getAll,
@@ -60,7 +64,16 @@ async function _delete(id) {
 }
 
 // private helper functions
+const writeFilePath =
+  process.env.NODE_ENV == "development"
+    ? "../data/contacts.json"
+    : "/tmp/contacts.json";
 
+console.log({ writeFilePath });
 function saveData() {
-  fs.writeFileSync("data/contacts.json", JSON.stringify(contacts, null, 4));
+  try {
+    fs.writeFileSync(writeFilePath, JSON.stringify(contacts, null, 4));
+  } catch (error) {
+    console.log("CATCH - ", error);
+  }
 }
