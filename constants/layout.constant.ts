@@ -1,4 +1,4 @@
-export const navLinks = [
+import GroupIcon from '@mui/icons-material/Group';export const navLinks = [
     {
       label: "Contacts",
       path: "/",
@@ -6,6 +6,7 @@ export const navLinks = [
     {
       label: "Add Contact",
       path: "/add",
+
     },
   ];
   

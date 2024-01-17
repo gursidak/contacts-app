@@ -18,7 +18,8 @@ const contactService = {
   },
 
   async addContact(body: Omit<Contact, "id">) {
-    const res = await axios.post(`${BASE_URL}/contact`, body );
+    const res = await axios.post(`https://keepcontacts.vercel.app/api/contact`, body );
+
     return res.data;
   },
 };
