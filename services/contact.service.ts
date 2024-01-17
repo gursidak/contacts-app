@@ -10,7 +10,7 @@ const contactService = {
   },
 
   async getContactById(id: string, host?: string): Promise<Contact> {
-    const path = `${host ? `https://${'keepcontacts.vercel.app'}` : ""}${BASE_URL}/contact?id=${id}`;
+    const path = `${host ? `https://keepcontacts.vercel.app` : ""}${BASE_URL}/contact?id=${id}`;
     console.log({path});
 
     const res = await axios.get(path);

@@ -5,16 +5,22 @@ import { Container, Typography } from "@mui/material";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { Contact } from "@/types/contact.type";
 import useAppDispatch from "@/hooks/useAppDispatch";
-import { addContact, addNewContact } from "@/slices/contactSlice";
+import { addNewContact } from "@/slices/contactSlice";
 import { useRouter } from "next/router";
 
 const AddContact = () => {
-  const dispatch = useAppDispatch()
-  const router= useRouter()
-  const handleSubmitContactForm =  (values:Omit<Contact, 'id'>) => {
-     dispatch(addNewContact(values))
-     router.push('/')
-  }
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  
+  const handleSubmitContactForm = (values: Omit<Contact, "id">) => {
+
+    const handleSubmitCallback = () => {
+      router.push('/')
+    }
+
+    dispatch(addNewContact({body:values, callback:handleSubmitCallback}));
+  };
   return (
     <Layout footer={null}>
       <Container maxWidth="md">
@@ -22,20 +28,15 @@ const AddContact = () => {
           fontFamily={"monospace"}
           justifyContent={"start"}
           alignItems={"center"}
-          display={'flex'}
+          display={"flex"}
           gap={2}
           mb={5}
-
           variant="h3"
         >
           <PersonAddAltIcon fontSize={"large"} />
-           Add Contact         
-
+          Add Contact
         </Typography>
-        <ContactForm
-          onSubmit={handleSubmitContactForm}
-        />
-
+        <ContactForm onSubmit={handleSubmitContactForm} />
       </Container>
     </Layout>
   );
