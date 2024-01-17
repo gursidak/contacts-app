@@ -32,10 +32,8 @@ async function create(contact) {
   contact.dateUpdated = new Date().toISOString();
 
   // add and save contact
-  contacts.push(contact);
-
+  contacts = [contact, ...contacts];
   saveData();
-
   return contact;
 }
 

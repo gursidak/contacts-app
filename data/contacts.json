@@ -1,5 +1,28 @@
 [
     {
+        "firstName": "Gursidak",
+        "lastName": "",
+        "username": "",
+        "email": "",
+        "address": {
+            "street": "",
+            "suite": "",
+            "city": "",
+            "zipcode": ""
+        },
+        "phone": "9815853338",
+        "website": "",
+        "company": {
+            "name": "",
+            "catchPhrase": "",
+            "bs": ""
+        },
+        "name": "Gursidak ",
+        "id": 12,
+        "dateCreated": "2024-01-17T10:12:56.878Z",
+        "dateUpdated": "2024-01-17T10:12:56.878Z"
+    },
+    {
         "id": 1,
         "name": "Leanne Graham",
         "username": "Bret",

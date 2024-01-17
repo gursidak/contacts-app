@@ -10,7 +10,7 @@ const contactService = {
   },
 
   async getContactById(id: string, host?: string): Promise<Contact> {
-    const path = `${host ? `https://${'keepcontacts.vercel.app'}` : ""}${BASE_URL}/contact?id=${id}`;
+    const path = `${host ? `https://keepcontacts.vercel.app` : ""}${BASE_URL}/contact?id=${id}`;
     console.log({path});
 
     const res = await axios.get(path);
@@ -18,7 +18,8 @@ const contactService = {
   },
 
   async addContact(body: Omit<Contact, "id">) {
-    const res = await axios.post(`${BASE_URL}/contact`, body );
+    const res = await axios.post(`https://keepcontacts.vercel.app/api/contact`, body );
+
     return res.data;
   },
 };
