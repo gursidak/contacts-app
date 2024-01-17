@@ -15,11 +15,11 @@ const contactSlice = createSlice({
   name: "contact",
   initialState,
   reducers: {
-    addContact: (state, { payload }: PayloadAction<Omit<Contact, "id">>) => {
-      const newContact = { ...payload, id: dayjs().valueOf() };
-      state.contacts = [newContact, ...state.contacts];
-      toast.success("Contact saved successfully");
-    },
+    // addContact: (state, { payload }: PayloadAction<Omit<Contact, "id">>) => {
+    //   const newContact = { ...payload, id: dayjs().valueOf() };
+    //   state.contacts = [newContact, ...state.contacts];
+    //   toast.success("Contact saved successfully");
+    // },
 
     updateContact: (state, { payload }: PayloadAction<Contact>) => {
       const updatedContact = payload;
@@ -45,7 +45,7 @@ const contactSlice = createSlice({
       })
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.contacts = payload;
+        state.contacts = payload || [];
       })
       .addCase(fetchContacts.rejected, (state, { payload }) => {
         state.loading = false;
@@ -72,7 +72,7 @@ const contactSlice = createSlice({
 });
 
 const contactReducer = contactSlice.reducer;
-export const { updateContact, removeContact, addContact } =
+export const { updateContact, removeContact } =
   contactSlice.actions;
 export default contactReducer;
 
@@ -93,13 +93,7 @@ export const fetchContacts = createAsyncThunk(
 
 export const addNewContact = createAsyncThunk(
   "contacts/addContact",
-  async ({
-    body,
-    callback,
-  }: {
-    body: PostContact;
-    callback: () => void;
-  }) => {
+  async ({ body, callback }: { body: PostContact; callback: () => void }) => {
     try {
       const data = await contactService.addContact(body);
       return { data, callback };
