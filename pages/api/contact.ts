@@ -1,10 +1,7 @@
-// import { prisma } from './../../configs/prisma.config';
-
 import { PostContact } from "@/types/contact.type";
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const prisma = new PrismaClient();
+import prisma from "@/configs/prisma.config";
 
 export default async function contactHandler(
   req: NextApiRequest,
