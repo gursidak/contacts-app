@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import {
+  Box,
   Container,
   Grid,
   TableContainer,
@@ -20,7 +21,7 @@ type Props = {
 
 const ContactsTable: React.FC<Props> = ({data:contacts, loading}) => {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter()
   const columns: TableColumn[] = useMemo(
     () => [
@@ -66,15 +67,15 @@ const ContactsTable: React.FC<Props> = ({data:contacts, loading}) => {
   );
 
   const handleRowClick = (row:ContactDisplayDataType) => {
-    console.log(row);
     router.push(`/person/${row.id}`)
 
   };
 
   return (
-    <Container>
+    <Box>
       <TableContainer>
         <Table
+
           stickyHeader={true}
           data={transformedContacts}
           loading={loading}
@@ -82,7 +83,7 @@ const ContactsTable: React.FC<Props> = ({data:contacts, loading}) => {
           onRowClick={ (record) => handleRowClick(record as ContactDisplayDataType )}
         />
       </TableContainer>
-    </Container>
+    </Box>
   );
 };
 

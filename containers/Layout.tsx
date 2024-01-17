@@ -1,25 +1,23 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-import React from 'react'
-import styles from '../styles/Layout.module.css'; // Import a CSS module for styling
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import React from "react";
+import { Box } from "@mui/material";
 
 type Props = {
+  children: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+};
 
-    children : React.ReactNode
-}
 
-const Layout = ({children}: Props) => {
+const Layout = ({ children, header, footer }: Props) => {
   return (
-    <div className={styles.layout}>
-        <Header />
-        <div className={styles.content}>
-        {children}
+    <Box display={'flex'} flexDirection={'column'} height={'100vh'}>
+      {header !== undefined ? header : <Header />}
+      <Box maxWidth={'xl'} flex={1} marginY={2}>{children}</Box>
+      {footer !== undefined ? footer : <Footer />}
+    </Box>
+  );
+};
 
-        </div>
-        <Footer />
-
-    </div>
-  )
-}
-
-export default Layout
+export default Layout;
