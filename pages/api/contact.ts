@@ -10,7 +10,7 @@ export default async function contactHandler(
 
   if (req.method === "POST") {
     const result = await contactRepo.create(req.body);
-    res.status(200).json(result);
+   return res.status(200).json(result);
   }
 
   if (req.method === "DELETE") {
@@ -20,7 +20,7 @@ export default async function contactHandler(
 
   if (req.method === "PUT") {
     const result = await contactRepo.delete(req.body);
-    res.status(200).json(result);
+  return   res.status(200).json(result);
   }
 
   if (req.method === "GET" && req.query.id ) {
