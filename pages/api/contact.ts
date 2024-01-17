@@ -1,9 +1,7 @@
 // import { prisma } from './../../configs/prisma.config';
 
-import { contactRepo } from "@/helpers/contact-repo";
 import { PostContact } from "@/types/contact.type";
 import { PrismaClient } from "@prisma/client";
-import { connect } from "http2";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
@@ -33,15 +31,15 @@ export default async function contactHandler(
     return res.status(200).json(result);
   }
 
-  if (req.method === "DELETE") {
-    const result = await contactRepo.delete(req.body);
-    res.status(200).json(result);
-  }
+  // if (req.method === "DELETE") {
+  //   const result = await contactRepo.delete(req.body);
+  //   res.status(200).json(result);
+  // }
 
-  if (req.method === "PUT") {
-    const result = await contactRepo.delete(req.body);
-    return res.status(200).json(result);
-  }
+  // if (req.method === "PUT") {
+  //   const result = await contactRepo.delete(req.body);
+  //   return res.status(200).json(result);
+  // }
 
   if (req.method === "GET" && req.query.id) {
     const id = req.query.id as string;
