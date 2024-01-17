@@ -45,7 +45,7 @@ const NavLink = ({ label, path }: NavLinkProps) => {
         variant={"h6"}
         style={{ textDecoration: "none" }}
         color={"#FFF"}
-        fontSize={"medium"}
+        fontSize={"small"}
       >
         {label}
       </Typography>
